@@ -24,6 +24,7 @@ const expenses = [
 const App = () => {
   return (
     <div>
+      <h2>let's get started</h2>
       <ExpenseItem expenses={expenses} />
     </div>
   );
