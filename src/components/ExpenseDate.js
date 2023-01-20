@@ -1,5 +1,5 @@
 import "./ExpenseDate.css"
-const ExpenseItemDate = ({ date }) => {
+const ExpenseDate = ({ date }) => {
   const currentMonth = date?.toLocaleString("en-US", { month: "long" });
   const currentDay = date?.toLocaleString("en-US", { day: "2-digit" });
   const currentYear = date?.getFullYear();
@@ -11,4 +11,4 @@ const ExpenseItemDate = ({ date }) => {
     </div>
   );
 };
-export default ExpenseItemDate;
+export default ExpenseDate;
