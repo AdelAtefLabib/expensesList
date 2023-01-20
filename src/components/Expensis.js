@@ -5,6 +5,7 @@ const Expenses = ({ Expenses }) => {
     return (
       <div className="expenses">
         <ExpenseItem item={item}></ExpenseItem>
+        
       </div>
     );
   });
