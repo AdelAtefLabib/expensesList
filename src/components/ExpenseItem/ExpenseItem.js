@@ -9,6 +9,7 @@ const ExpenseItem = (props) => {
     console.log('ExpenseItem evaluated by React');
   }
   const [title,setTitle] = useState(props.item.title)
+  
     return (
         <div className='expense-item'>
           <ExpenseDate date={props.item.date} />
