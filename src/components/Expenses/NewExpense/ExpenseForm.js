@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    console.log("formValues", {...formValues,date:new Date(formValues.enteredDate)});
+    const newExpenseItemObj =  {...formValues,date:new Date(formValues.enteredDate)}
+    console.log("formValues", newExpenseItemObj);
+    props.onSaveExpenseItem(newExpenseItemObj)
     //clear what user input
     setFormValues({ enteredTitle: "",
     enteredAmount: "",
