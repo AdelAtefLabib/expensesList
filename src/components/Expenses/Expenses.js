@@ -5,7 +5,7 @@ import ExpenseFilter from "./ExpenseFilter";
 import { useState } from "react";
 const Expenses = ({ Expenses }) => {
   const [selectValue, setSelectValue] = useState();
-  const [filterArray,setFilterArray] = useState([])
+  const [filterArray,setFilterArray] = useState(Expenses)
   const selectFilterValue = (selectedVal) => {
     setSelectValue(selectedVal);
      const filteredArray = Expenses.filter((item) => {
