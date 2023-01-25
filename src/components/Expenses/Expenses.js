@@ -17,7 +17,7 @@ const Expenses = ({ Expenses }) => {
 
   return (
     <>
-      <ExpenseFilter onSelectFilterValue={selectFilterValue} />
+      <ExpenseFilter onSelectFilterValue={selectFilterValue} selected={selectValue} />
       {filterArray?.map((item) => {
         return (
           <Card key={item.id}>
