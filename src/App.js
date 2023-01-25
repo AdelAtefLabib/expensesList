@@ -21,12 +21,26 @@ const expenses = [
     title: "New Desk (Wooden)",
     amount: 450,
     date: new Date(2021, 5, 12),
+  }, {
+    id: "e5",
+    title: "Papers",
+    amount: 94.12,
+    date: new Date(2022, 7, 14),
+  },
+  {
+    id: "e6",
+    title: "Papers",
+    amount: 1000.12,
+    date: new Date(2019, 7, 14),
   },
 ];
 const App = () => {
+  const parentToChild=(expenseItem)=>{
+    console.log('App ' , {...expenseItem,key:Math.floor(Math.random() * 100)});
+  }
   return (
     <div>
-      <NewExpense/>
+      <NewExpense parentToChild={parentToChild}/>
       <Expenses Expenses={expenses} />
     </div>
   );
