@@ -8,11 +8,14 @@ const Expenses = ({ Expenses }) => {
   const [filterArray,setFilterArray] = useState(Expenses)
   const selectFilterValue = (selectedVal) => {
     setSelectValue(selectedVal);
-     const filteredArray = Expenses.filter((item) => {
+    console.log('selectValue',selectValue)
+      const filteredArray = Expenses.filter((item) => {
         let itemDate = new Date(item.date).getFullYear();
         return itemDate === Number(selectedVal);
       })
       setFilterArray(filteredArray)
+   
+     
   };
 
   return (
