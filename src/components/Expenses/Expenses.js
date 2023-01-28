@@ -1,8 +1,8 @@
+import React ,{useState}from "react";
 import ExpenseItem from "./ExpenseItem";
-import "./Expenses.css";
 import Card from "../UI/Card";
 import ExpenseFilter from "./ExpenseFilter";
-import { useState } from "react";
+import "./Expenses.css";
 const Expenses = ({ Expenses }) => {
   const [selectValue, setSelectValue] = useState();
   const [filterArray,setFilterArray] = useState(Expenses)
@@ -21,13 +21,13 @@ const Expenses = ({ Expenses }) => {
   return (
     <>
       <ExpenseFilter onSelectFilterValue={selectFilterValue} selected={selectValue} />
+      <Card>
       {filterArray?.map((item) => {
         return (
-          <Card key={item.id}>
-            <ExpenseItem item={item}></ExpenseItem>
-          </Card>
+            <ExpenseItem key={item.id} item={item}></ExpenseItem>
         );
       })}
+      </Card>
     </>
   );
 };
