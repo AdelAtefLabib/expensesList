@@ -1,44 +1,39 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
-const initialFormValues={
-  title: '',
-  amount: '',
-  date: '',
-}
+const initial_Values = { title: "", amount: "", date: "" };
 const ExpenseForm = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
-    const newExpenseItemObj =  {...formValues,date:new Date(formValues.date)}
-    props.onSaveExpenseItem(newExpenseItemObj)
+    props.onSaveExpenseItem({
+      ...formValues,
+      date: new Date(formValues.date),
+    });
     //clear what user input
-    setFormValues(initialFormValues)
+    setFormValues(initial_Values);
   };
-  //   const [enteredTitle, setEnteredTitle] = useState('');
-  //   const [amount, setAmount] = useState('');
-  //   const [selectedDate,setSelectedDate] =  useState('')
 
-  const [formValues, setFormValues] = useState(initialFormValues);
-  const titleChangeHandler = (event) => {
+  const [formValues, setFormValues] = useState(initial_Values);
+  const titleChangeHandler = (e) => {
     // setEnteredTitle(event.target.value);
     //setFormValues({...formValues, title: e.target.value });
-    setFormValues((prevState)=>{
-        return{
-            ...prevState,title:event.target.value
-        }
-    })
+    setFormValues((prevState) => {
+      return {
+        ...prevState,
+        title: e.target.value,
+      };
+    });
   };
-  const amountChangeHandler = (event) => {
+  const amountChangeHandler = (e) => {
     // setFormValues({...formValues, enteredAmount: e.target.value})
-     setFormValues((prevState)=>{
-        return{...prevState, amount:event.target.value}
-    })
+    setFormValues((prevState) => {
+      return { ...prevState, amount: e.target.value };
+    });
   };
-  const dateChangeHandler = (event) => {
+  const dateChangeHandler = (e) => {
     //  setFormValues({...formValues,enteredDate:e.target.value})
-        setFormValues((prevState)=>{
-          console.log('dateChangeHandler--Value',event.target.value);
-            return{...prevState, date:event.target.value}
-        })
+    setFormValues((prevState) => {
+      return { ...prevState, date: e.target.value };
+    });
   };
 
   return (

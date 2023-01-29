@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/Expenses/NewExpense/NewExpense";
 import "./App.css";
-const initialExpenses = [
+const dummyExpenses = [
   {
     id: "e1",
     title: "Toilet Paper",
@@ -21,21 +21,18 @@ const initialExpenses = [
     title: "New Desk (Wooden)",
     amount: 450,
     date: new Date(2021, 5, 12),
-  }
+  }, 
 ];
 const App = () => {
-  const [expenses, setExpenses] =useState(initialExpenses)
-  const addExpenseHandler=(expenseItem)=>{
-    // console.log('App ' , {...expenseItem,key:Math.floor(Math.random() * 100)});
-    //you can use ... operator not only for object but also for array
-    // setExpenses([expenseItem,...expenses])
-    setExpenses(prevExpenses=>{
-      return [expenseItem,...prevExpenses]
-    });
+  const [expenses,setExpenses] =  useState(dummyExpenses)
+  const onAddExpenseItem=(expense)=>{
+    setExpenses((prevExpenses)=>{
+      return[expense,...prevExpenses]
+    })
   }
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler}/>
+      <NewExpense onAddExpense={onAddExpenseItem}/>
       <Expenses Expenses={expenses} />
     </div>
   );
