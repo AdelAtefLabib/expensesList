@@ -16,22 +16,28 @@ const Expenses = ({ Expenses }) => {
       return Expenses;
     }
   });
+ 
+  let expenseContent= <p>No Expenses Found</p>
+  if (filterByYear.length>0){ 
+    expenseContent =filterByYear?.map((expense) => {
+      return (
+        <ExpenseItem
+          key={expense.id}
+          amount={expense.amount}
+          title={expense.title}
+          date={expense.date}
+        />
+      );
+    })
+  }
+    
   return (
     <Card>
       <ExpenseFilter
         onSelectFilterValue={selectFilterValue}
         selected={selectYear}
       />
-      {filterByYear?.map((expense) => {
-        return (
-          <ExpenseItem
-            key={expense.id}
-            amount={expense.amount}
-            title={expense.title}
-            date={expense.date}
-          />
-        );
-      })}
+     {expenseContent}
     </Card>
   );
 };
