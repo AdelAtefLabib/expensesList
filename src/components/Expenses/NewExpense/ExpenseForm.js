@@ -1,57 +1,56 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
+const initialFormValues={
+  title: '',
+  amount: '',
+  date: '',
+}
 const ExpenseForm = (props) => {
-  const onSubmitHandler = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-    const newExpenseItemObj =  {...formValues,date:new Date(formValues.enteredDate)}
-    console.log("formValues", newExpenseItemObj);
+    const newExpenseItemObj =  {...formValues,date:new Date(formValues.date)}
     props.onSaveExpenseItem(newExpenseItemObj)
     //clear what user input
-    setFormValues({ enteredTitle: "",
-    enteredAmount: "",
-    enteredDate: "",})
+    setFormValues(initialFormValues)
   };
   //   const [enteredTitle, setEnteredTitle] = useState('');
   //   const [amount, setAmount] = useState('');
   //   const [selectedDate,setSelectedDate] =  useState('')
 
-  const [formValues, setFormValues] = useState({
-    enteredTitle: '',
-    enteredAmount: '',
-    enteredDate: '',
-  });
-  const handleTitleChanged = (e) => {
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const titleChangeHandler = (event) => {
     // setEnteredTitle(event.target.value);
     //setFormValues({...formValues, title: e.target.value });
     setFormValues((prevState)=>{
         return{
-            ...prevState,enteredTitle:e.target.value
+            ...prevState,title:event.target.value
         }
     })
   };
-  const handleAmountChanged = (e) => {
+  const amountChangeHandler = (event) => {
     // setFormValues({...formValues, enteredAmount: e.target.value})
      setFormValues((prevState)=>{
-        return{...prevState, enteredAmount:e.target.value}
+        return{...prevState, amount:event.target.value}
     })
   };
-  const handleSelectedDateChanged = (e) => {
+  const dateChangeHandler = (event) => {
     //  setFormValues({...formValues,enteredDate:e.target.value})
         setFormValues((prevState)=>{
-            return{...prevState, enteredDate:e.target.value}
+          console.log('dateChangeHandler--Value',event.target.value);
+            return{...prevState, date:event.target.value}
         })
   };
 
   return (
-    <form onSubmit={onSubmitHandler}>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label className="new-expense__control label">Title</label>
           <input
             type="text"
             className="new-expense__control input"
-            value={formValues.enteredTitle}
-            onChange={handleTitleChanged}
+            value={formValues.title}
+            onChange={titleChangeHandler}
           />
         </div>
         <div className="new-expense__control">
@@ -61,8 +60,8 @@ const ExpenseForm = (props) => {
             min={"0"}
             step="0.1"
             className="new-expense__control input"
-            onChange={handleAmountChanged}
-            value={formValues.enteredAmount}
+            onChange={amountChangeHandler}
+            value={formValues.amount}
           />
         </div>
         <div className="new-expense__control">
@@ -72,8 +71,8 @@ const ExpenseForm = (props) => {
             min="1-2-2019"
             max="1-2-2024"
             className="new-expense__control input"
-            value={formValues.enteredDate}
-            onChange={handleSelectedDateChanged}
+            value={formValues.date}
+            onChange={dateChangeHandler}
           />
         </div>
         <div className="new_expense__actions">

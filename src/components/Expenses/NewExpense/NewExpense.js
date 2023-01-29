@@ -3,15 +3,8 @@ import ExpenseForm from "./ExpenseForm";
 import "./NewExpense.css"
 const NewExpense = (props) => {
     const onSaveExpenseItemFunc=(expenseData)=>{
-        const expenseDataObj = {...expenseData,id: Number(Math.random())}
-
-        props.parentToChild(expenseDataObj)
-
-        // props.onSaveExpense(expenseDataObj)
-        console.log('NewExpenseScreen',expenseDataObj);
-       // return ExpenseDataObj
+        props.onAddExpense({...expenseData,id: Number(Math.random()).toString()})
     }
-    
   return (
     <div className="new-expense">
       <ExpenseForm onSaveExpenseItem={onSaveExpenseItemFunc} />

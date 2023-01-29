@@ -1,8 +1,7 @@
 import "./ExpenseItem.css";
 import ExpenseDate from "./ExpenseDate";
 import Card from "../UI/Card";
-const ExpenseItem = (props) => {
-  const {date,title,amount} =  props.item
+const ExpenseItem = ({date,title,amount}) => {
   return (
     <Card className="expense-item">
       <ExpenseDate date={date} />

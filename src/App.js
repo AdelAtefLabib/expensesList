@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/Expenses/NewExpense/NewExpense";
 import "./App.css";
-const expenses = [
+const initialExpenses = [
   {
     id: "e1",
     title: "Toilet Paper",
@@ -21,26 +21,21 @@ const expenses = [
     title: "New Desk (Wooden)",
     amount: 450,
     date: new Date(2021, 5, 12),
-  }, {
-    id: "e5",
-    title: "Papers",
-    amount: 94.12,
-    date: new Date(2022, 7, 14),
-  },
-  {
-    id: "e6",
-    title: "Papers",
-    amount: 1000.12,
-    date: new Date(2019, 7, 14),
-  },
+  }
 ];
 const App = () => {
-  const parentToChild=(expenseItem)=>{
-    console.log('App ' , {...expenseItem,key:Math.floor(Math.random() * 100)});
+  const [expenses, setExpenses] =useState(initialExpenses)
+  const addExpenseHandler=(expenseItem)=>{
+    // console.log('App ' , {...expenseItem,key:Math.floor(Math.random() * 100)});
+    //you can use ... operator not only for object but also for array
+    // setExpenses([expenseItem,...expenses])
+    setExpenses(prevExpenses=>{
+      return [expenseItem,...prevExpenses]
+    });
   }
   return (
     <div>
-      <NewExpense parentToChild={parentToChild}/>
+      <NewExpense onAddExpense={addExpenseHandler}/>
       <Expenses Expenses={expenses} />
     </div>
   );
