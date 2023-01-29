@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 const initial_Values = { title: "", amount: "", date: "" };
 const ExpenseForm = (props) => {
-  const onSubmitHandler = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
     props.onSaveExpenseItem({
       ...formValues,
@@ -37,7 +37,7 @@ const ExpenseForm = (props) => {
   };
 
   return (
-    <form onSubmit={onSubmitHandler}>
+    <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label className="new-expense__control label">Title</label>
