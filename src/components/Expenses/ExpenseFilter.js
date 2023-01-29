@@ -13,6 +13,7 @@ const ExpenseFilter = (props) => {
     { Text: 2021, value: "2021" },
     { Text: 2020, value: "2020" },
     { Text: 2019, value: "2019" },
+    { Text: 2023, value: "2023" },
   ];
   return <div className="expenses-filter">
     <div className="expenses-filter__control">

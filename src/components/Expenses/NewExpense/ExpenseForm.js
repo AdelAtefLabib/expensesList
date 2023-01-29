@@ -1,45 +1,39 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
+const initial_Values = { title: "", amount: "", date: "" };
 const ExpenseForm = (props) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    const newExpenseItemObj =  {...formValues,date:new Date(formValues.enteredDate)}
-    console.log("formValues", newExpenseItemObj);
-    props.onSaveExpenseItem(newExpenseItemObj)
+    props.onSaveExpenseItem({
+      ...formValues,
+      date: new Date(formValues.date),
+    });
     //clear what user input
-    setFormValues({ enteredTitle: "",
-    enteredAmount: "",
-    enteredDate: "",})
+    setFormValues(initial_Values);
   };
-  //   const [enteredTitle, setEnteredTitle] = useState('');
-  //   const [amount, setAmount] = useState('');
-  //   const [selectedDate,setSelectedDate] =  useState('')
 
-  const [formValues, setFormValues] = useState({
-    enteredTitle: '',
-    enteredAmount: '',
-    enteredDate: '',
-  });
-  const handleTitleChanged = (e) => {
+  const [formValues, setFormValues] = useState(initial_Values);
+  const titleChangeHandler = (e) => {
     // setEnteredTitle(event.target.value);
     //setFormValues({...formValues, title: e.target.value });
-    setFormValues((prevState)=>{
-        return{
-            ...prevState,enteredTitle:e.target.value
-        }
-    })
+    setFormValues((prevState) => {
+      return {
+        ...prevState,
+        title: e.target.value,
+      };
+    });
   };
-  const handleAmountChanged = (e) => {
+  const amountChangeHandler = (e) => {
     // setFormValues({...formValues, enteredAmount: e.target.value})
-     setFormValues((prevState)=>{
-        return{...prevState, enteredAmount:e.target.value}
-    })
+    setFormValues((prevState) => {
+      return { ...prevState, amount: e.target.value };
+    });
   };
-  const handleSelectedDateChanged = (e) => {
+  const dateChangeHandler = (e) => {
     //  setFormValues({...formValues,enteredDate:e.target.value})
-        setFormValues((prevState)=>{
-            return{...prevState, enteredDate:e.target.value}
-        })
+    setFormValues((prevState) => {
+      return { ...prevState, date: e.target.value };
+    });
   };
 
   return (
@@ -50,8 +44,8 @@ const ExpenseForm = (props) => {
           <input
             type="text"
             className="new-expense__control input"
-            value={formValues.enteredTitle}
-            onChange={handleTitleChanged}
+            value={formValues.title}
+            onChange={titleChangeHandler}
           />
         </div>
         <div className="new-expense__control">
@@ -61,8 +55,8 @@ const ExpenseForm = (props) => {
             min={"0"}
             step="0.1"
             className="new-expense__control input"
-            onChange={handleAmountChanged}
-            value={formValues.enteredAmount}
+            onChange={amountChangeHandler}
+            value={formValues.amount}
           />
         </div>
         <div className="new-expense__control">
@@ -72,8 +66,8 @@ const ExpenseForm = (props) => {
             min="1-2-2019"
             max="1-2-2024"
             className="new-expense__control input"
-            value={formValues.enteredDate}
-            onChange={handleSelectedDateChanged}
+            value={formValues.date}
+            onChange={dateChangeHandler}
           />
         </div>
         <div className="new_expense__actions">
