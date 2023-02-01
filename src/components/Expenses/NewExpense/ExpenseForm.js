@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "./ExpenseForm.css";
 const initial_Values = { title: "", amount: "", date: "" };
 const ExpenseForm = (props) => {
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const submitHandler = (event) => {
+    event.preventDefault();
     props.onSaveExpenseItem({
-      ...formValues,
+      title:formValues.title,
+      amount:+formValues.amount,
       date: new Date(formValues.date),
     });
     //clear what user input
@@ -35,6 +36,7 @@ const ExpenseForm = (props) => {
       return { ...prevState, date: e.target.value };
     });
   };
+
 
   return (
     <form onSubmit={submitHandler}>
